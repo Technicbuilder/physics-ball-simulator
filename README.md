@@ -1,8 +1,9 @@
 # physics-ball-simulator
 
-A physics ball simulator that uses physics to calclate the position, velocity and soon other stuff too of the balls, going to implement a lot of math formulas
+A physics ball simulator that uses physics to calclate the position, velocity and soon other stuff too of the balls - going to learn and implement a lot of math formulae
 
-TO ADD FOR TOMMOROW 
-make balls lose x velocity after moving a lot
+TO ADD NEXT:
 - potetntially add friction
-- introduce collisions with other balls
+- prevent bug where ball sticks to top of the window and only moves in a horizontal fashion
+  
+
