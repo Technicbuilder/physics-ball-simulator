@@ -1,13 +1,16 @@
 
 {
     "physics": {
-        "gravity": 0.1635
+        "gravity": 0.1635,
+        "fluid velocity still air": 0,
+        "air density": 0.0005
     },
 
     "ball": {
         "mass": 500,
         "density": 787400,
         "volume": 0.63500127,
-        "radius": 5.44206368
+        "radius": 5.44206368,
+        "drag coefficient": 0.47
     }
 }
