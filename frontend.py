@@ -5,7 +5,7 @@ import time
 from kinematics_otherstuff_too import *
 
 
-with open('configurations.json', 'r') as f:
+with open('physics-ball-simulator-main/configurations.json', 'r') as f:
     config = json.load(f)
 
 
@@ -44,24 +44,24 @@ class Ball(pygame.sprite.Sprite):
         #   self.rect.right is the boundary rectangle
         #   screen width is screen width
         
-        if self.rect.right >= screen_width and self.x_velocity < 0:
+        if self.rect.right >= screen_width:
             self.rect.right = screen_width
             self.pos_x = float(self.rect.centerx)
             self.x_velocity *= -1
 
-        elif self.rect.left <= 0 and self.x_velocity < 0:
+        elif self.rect.left <= 0:
             self.rect.left = 0
             self.pos_x = float(self.rect.centerx)
             self.x_velocity *= -1
 
-        if self.rect.bottom >= screen_height and self.y_velocity < 0:
+        if self.rect.bottom >= screen_height:
             self.rect.bottom = screen_height
             self.pos_y = float(self.rect.centery)
             self.y_velocity *= -1         
             if abs(self.y_velocity) < 1:
                 self.y_velocity = 0
 
-        elif self.rect.top <= 0 and self.y_velocity < 0:
+        elif self.rect.top <= 0:
             self.rect.top = 0
             self.pos_y = float(self.rect.centery)
             self.y_velocity *= -1
