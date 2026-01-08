@@ -1,5 +1,12 @@
 import pygame
 import random
+import json
+import time
+
+
+with open('configurations.json', 'r', encoding='utf-8') as f:
+    config = json.load(f)
+
 
 class Ball(pygame.sprite.Sprite):
     def __init__(self, x, y, xv, yv, radius, color, mass):
@@ -22,7 +29,10 @@ class Ball(pygame.sprite.Sprite):
         
 
     def update(self, screen_width, screen_height):
-        self.pos_y += self.gravity
+        self.y_velocity += config['physics']['gravity']     #   constant velocity
+        self.pos_y += self.y_velocity                       #   turns constant velocity into acceleration
+
+
         self.pos_x += self.x_velocity
         self.pos_y += self.y_velocity
 
@@ -31,6 +41,8 @@ class Ball(pygame.sprite.Sprite):
         self.rect.centery = int(self.pos_y)
 
         #   collisions with the box edges
+        #   self.rect.right is the boundary rectangle
+        #   screen width is screen width
         if self.rect.right >= screen_width:
             self.rect.right = screen_width
             self.pos_x = float(self.rect.centerx)
@@ -63,16 +75,16 @@ clock = pygame.time.Clock()
 
 all_ball = pygame.sprite.Group()
 
-for random_balls in range(5):   #   Balls are given random sizes, speeds, colours and starting positions
+for random_balls in range(20):   #   Balls are given random sizes, speeds, colours and starting positions
     random_color = (random.randint(50, 255), random.randint(50, 255), random.randint(50, 255))
     new_ball = Ball(
-        random.randint(50, 750),
-        random.randint(50, 550),
-        random.randint(30, 80),
-        0,
-        random.randint(10, 30),
-        random_color,
-        10
+        random.randint(50, 750),    # x starting position
+        random.randint(50, 550),    # y tarting position
+        random.randint(30, 80),     # x starting velocity
+        0,                          # y starting velocity
+        config['ball']['radius'],   # ball radius
+        random_color,               # ball colour
+        config['ball']['mass']      # ball mass
     )
 
     all_ball.add(new_ball)
