@@ -1,0 +1,13 @@
+
+{
+    "physics": {
+        "gravity": 0.1635
+    },
+
+    "ball": {
+        "mass": 500,
+        "density": 787400,
+        "volume": 0.63500127,
+        "radius": 5.44206368
+    }
+}
