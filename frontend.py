@@ -2,9 +2,10 @@ import pygame
 import random
 import json
 import time
+from kinematics_otherstuff_too import *
 
 
-with open('configurations.json', 'r', encoding='utf-8') as f:
+with open('configurations.json', 'r') as f:
     config = json.load(f)
 
 
@@ -30,11 +31,10 @@ class Ball(pygame.sprite.Sprite):
 
     def update(self, screen_width, screen_height):
         self.y_velocity += config['physics']['gravity']     #   constant velocity
+
         self.pos_y += self.y_velocity                       #   turns constant velocity into acceleration
-
-
         self.pos_x += self.x_velocity
-        self.pos_y += self.y_velocity
+
 
         #   Matches pixels with integers (e.g you cant move a circle 10.5 pixels away from a collision)
         self.rect.centerx = int(self.pos_x)
@@ -43,23 +43,25 @@ class Ball(pygame.sprite.Sprite):
         #   collisions with the box edges
         #   self.rect.right is the boundary rectangle
         #   screen width is screen width
-        if self.rect.right >= screen_width:
+        
+        if self.rect.right >= screen_width and self.x_velocity < 0:
             self.rect.right = screen_width
             self.pos_x = float(self.rect.centerx)
             self.x_velocity *= -1
-        elif self.rect.left <= 0:
+
+        elif self.rect.left <= 0 and self.x_velocity < 0:
             self.rect.left = 0
             self.pos_x = float(self.rect.centerx)
             self.x_velocity *= -1
 
-        if self.rect.bottom >= screen_height:
+        if self.rect.bottom >= screen_height and self.y_velocity < 0:
             self.rect.bottom = screen_height
             self.pos_y = float(self.rect.centery)
-            self.y_velocity *= -0.9         
+            self.y_velocity *= -1         
             if abs(self.y_velocity) < 1:
                 self.y_velocity = 0
 
-        elif self.rect.top <= 0:
+        elif self.rect.top <= 0 and self.y_velocity < 0:
             self.rect.top = 0
             self.pos_y = float(self.rect.centery)
             self.y_velocity *= -1
@@ -68,7 +70,7 @@ class Ball(pygame.sprite.Sprite):
 #   INTERFACE
 pygame.init()
 
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1000, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ball Physics collision thingy")
 clock = pygame.time.Clock()
@@ -80,8 +82,8 @@ for random_balls in range(20):   #   Balls are given random sizes, speeds, colou
     new_ball = Ball(
         random.randint(50, 750),    # x starting position
         random.randint(50, 550),    # y tarting position
-        random.randint(30, 80),     # x starting velocity
-        0,                          # y starting velocity
+        10,     # x starting velocity
+        10,     # y starting velocity
         config['ball']['radius'],   # ball radius
         random_color,               # ball colour
         config['ball']['mass']      # ball mass
@@ -95,7 +97,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    #   handles air resistance
+    air_resistance(all_ball, config['ball']['radius'], config['physics']['air density'], config['ball']['drag coefficient'])
+
+    #   handles physics update
     all_ball.update(WIDTH, HEIGHT)
+
+    #   handles collision
+    collisions(all_ball, config['ball']['radius'])
 
     screen.fill((20, 20, 30))
     all_ball.draw(screen)
