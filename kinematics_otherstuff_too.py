@@ -1,3 +1,5 @@
+#    Not sure If these functions come under kinematics but this file will contain the movement-impacting functions
+
 import math
 
 
@@ -122,4 +124,5 @@ def friction(ball_groups, mass, gravity, coeff_friction, screen_height):
                 ball.x_velocity = 0
 
     
+
 
