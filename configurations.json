@@ -13,7 +13,7 @@
         "radius": 5.44206368,
         "drag coefficient": 0.47,
         "restitution": 0.6,
-        "coeff of friction": 0.01,
+        "coeff of friction": 0.05,
         
         "max initial x velocity": 10,
         "min initial x velocity": -10,
