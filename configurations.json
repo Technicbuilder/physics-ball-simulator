@@ -11,6 +11,15 @@
         "density": 787400,
         "volume": 0.63500127,
         "radius": 5.44206368,
-        "drag coefficient": 0.47
+        "drag coefficient": 0.47,
+        "restitution": 0.6,
+        "coeff of friction": 0.01,
+        
+        "max initial x velocity": 10,
+        "min initial x velocity": -10,
+        "max initial y velocity": 10,
+        "min initial y velocity": -10,
+        "number of balls": 20
+
     }
 }
