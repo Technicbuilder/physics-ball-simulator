@@ -6,9 +6,7 @@ Objective of this is to create a python program which applies the maths and phys
 where I can see them work visually
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TO ADD NEXT:
-- add friction
-- prevent bug where ball sticks to top of the window and only moves in a horizontal fashion, bug where balls stick together
 - momentum and inelastic collisions using the mass and velocities of the ball
-- coefficient of restitution (bouncy-ness) of the spheres
+
   
 
