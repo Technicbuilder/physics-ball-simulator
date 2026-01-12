@@ -11,7 +11,6 @@ FEATURES:
 - Friction opposes the balls motion when rolling on the bottom of the window
 - Values stored in a JSON file for easy and simple modification 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-TO ADD NEXT:
 DISCONTINUED (12/01/2026)
 
   
