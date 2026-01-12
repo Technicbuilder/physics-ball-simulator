@@ -12,8 +12,7 @@ FEATURES:
 - Values stored in a JSON file for easy and simple modification 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 TO ADD NEXT:
-- momentum and inelastic collisions using the mass and velocities of the ball
-- change in velocity depending on the angle the ball collided on
+DISCONTINUED (12/01/2026)
 
   
 
